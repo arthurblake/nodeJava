@@ -1,3 +1,4 @@
+// pull in jabsorb client
 var nodejava=require('./jabsorb');
 
 // create jabsorb (json-rpc) client for talking to Java

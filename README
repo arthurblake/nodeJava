@@ -1,0 +1,40 @@
+
+This is a port of the JavaScript browser front end for jabsorb (http://jabsorb.org) to nodeJS.
+
+jabsorb is a very simple and flexible framework for directly calling java methods in a remote 
+JVM and serializing/deserializing the associated java objects over the wire using JSON-RPC.
+
+See test.js for a very simple working example.
+See http://jabsorb.org for more information on using jabsorb.
+
+example usage:
+
+// pull in jabsorb client
+var nodejava=require('./jabsorb');
+
+// create jabsorb (json-rpc) client for talking to Java
+var java = new nodejava.client("http://your-url-to-jabsorb-server");
+
+// pick the compressors we want to use
+var compressors = {javaClass: "java.util.HashSet", set:{"Noop":"Noop", "JSMin":"JSMin", "gzip":"gzip"}};
+
+// call the remote Java server via json-rpc
+java.exposedObject.methodCall(
+
+  // call back function
+  // r is result, e is exception
+  function(r, e)
+  {
+    if (r && !e)
+    {
+      console.log ("got a result!");
+      console.log ("result: " + JSON.stringify(r));
+    }
+    else
+    {
+      console.log("exception occured:");
+      console.log("exception:  " + JSON.stringify(e));
+    }
+  }, argsGoHere, arg2, arg3, etc);
+
+
