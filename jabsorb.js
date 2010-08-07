@@ -1076,6 +1076,7 @@ var JSONRpcClient=(function()
     /* Unmarshall the response */
     if (status != 200)
     {
+      console.log ('code: ' + status + ' message: ' + statusText);
       throw new JSONRpcClient.Exception({ code: status, message: statusText });
     }
     return this.unmarshallResponse(data);

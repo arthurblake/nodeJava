@@ -13,7 +13,7 @@ example usage:
 var nodejava=require('./jabsorb');
 
 // create jabsorb (json-rpc) client for talking to Java
-var java = new nodejava.client("http://your-url-to-jabsorb-server");
+var java = new nodejava.client(["serverObjRef.serverMethodName", "exposedObject.methodCall", "etc.etc"], http://your-url-to-jabsorb-server");
 
 // call the remote Java server via json-rpc
 java.exposedObject.methodCall(
@@ -34,4 +34,8 @@ java.exposedObject.methodCall(
     }
   }, argsGoHere, arg2, arg3, etc);
 
+
+limitations:
+At this time, only asychronous calls are supported (this is a limitation of the XHR port that is being used.)
+But you shouldn't be doing synchronous calls anyway, right?
 
